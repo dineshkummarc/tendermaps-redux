@@ -1,0 +1,203 @@
+<html>
+    <head>
+        <script type="text/javascript" src="js/raphael-min.js"></script>
+        <script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
+        <script type="text/javascript" src="js/draw.js"></script>
+        <script type="text/javascript" src="js/page.js"></script>
+        <meta name="description" content="tendermaps redux" />
+        <meta name="contact" content="m.tahani@gmail.com" />
+        <meta name="author" content="mike tahani" />
+        
+        <style type="text/css">
+        
+            #svg {
+                display: none;
+            }
+        
+            #infostatic {
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+                padding: 5px;
+                background: #EB6841;
+                color: #000;
+            }
+        
+            #mapbox {
+                background-image: url('largemap.jpg');
+                border: 1px solid rgb(0, 0, 0);
+                width: 2361px;
+                height: 1633px;
+            }
+            
+            #metadata {
+                width: 50%;
+                display: none;
+                position: fixed;
+                top: 20%;
+                left: 25%;
+                background: #1A1A1A;
+                font-family: arial;
+                font-size: 12px;
+                color: #fff;
+                padding: 10px;
+                -moz-border-radius: 15px;
+                border-radius: 15px;
+            }
+            
+            #metadata_bg {
+                background: #000;
+                opacity: 0.9;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                display: none;
+                position: fixed;
+                top: 0;
+                left: 0;
+            }
+            
+            #toolbar {
+                position: fixed;
+                top: 10%;
+                left: 0;
+                //padding: 10px;
+                background: #0A0A0A;
+                color: #fff;
+                font-family: courier new;
+                font-size: 12px;
+                //border-top-left-radius: 10px 5px;
+                border-bottom-right-radius: 5px;
+                border-top-right-radius: 5px;
+                -moz-border-bottom-right-radius: 5px;
+                -moz-border-top-right-radius: 5px;
+            }
+            
+            a {
+                color: #00A0B0;
+            }
+            
+            .options {
+                margin-top: 10px;
+                padding: 5px;
+                padding-left: 10px;
+                padding-right: 10px;
+            }
+            
+            #mapdone,
+            #submitmap {
+                font-family: arial;
+                font-size: 38px;
+
+            }
+            
+            #mapdone {
+                //color: #EB6841;
+                width: 100%;
+                font-weight: bold;
+                text-decoration: none;
+                margin: 0;
+                padding: 0;
+                background: inherit;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
+            }
+            
+            a#mapdone:hover {
+                background: #fff;
+            }
+            
+            #submitmap {
+                border: 2px solid #fff;
+                background: #CC333F;
+                color: inherit;
+                width: 90%;
+                -moz-border-radius: 15px;
+                border-radius: 15px;
+            }
+        
+        </style>
+        
+        <script type="text/javascript">
+
+        </script>
+    </head>
+    <body>
+    
+        <div id="mapbox" onmousedown="if (brush_type == 'circle'){ drawDot(event.pageX,event.pageY); } else { draw_on = 'True'; setPoint(event); }" onmousemove="if (draw_on == 'True') { drawPath( event ); } " onmouseup="up();">
+        </div>
+        
+        <script type="text/javascript">
+            var paper = Raphael("mapbox", 2361, 1633);
+        </script>
+    
+        <div id="toolbar">
+            <div class="options">
+                <b>brush color:</b><br />
+                <a class="brushcolor green" href="javascript: var brush_color = '#00ff00';">green</a><br /> 
+                <a class="brushcolor red" href="javascript: var brush_color = '#ff0000';">red</a><br /> 
+                <a class="brushcolor blue" href="javascript: var brush_color = '#0000ff';">blue</a>
+            </div>
+                
+            <div class="options">
+                <b>brush type:</b><br />
+                <a class="brushtype path" href="javascript: var brush_type = 'path';">freehand</a><br /> 
+                <a class="brushtype circle" href="javascript: var brush_type = 'circle';">point of interest</a>
+            </div>
+                
+            <div class="options">
+                <b>brush size:</b> <br />
+                <a class="brushsize" href="javascript: var brush_size = 10;">10 px</a><br /> 
+                <a class="brushsize" href="javascript: var brush_size = 5;">5 px</a><br /> 
+                <a class="brushsize" href="javascript: var brush_size = 3;">3 px</a><br /> 
+                <a class="brushsize" href="javascript: var brush_size = 1;">1 px</a> 
+            </div>
+                
+            <div class="options">
+                <b>canvas options:</b><br />
+                <a class="undo" href="javascript: undo();">undo</a><br />
+                <a class="redo" href="javascript: redo();">redo</a><br />
+                <a class="clear" href="javascript: clearall();">clear canvas</a>
+            </div>
+            
+            <br />
+            
+            <div class="options">
+                <a id="mapdone" href="javascript: add_json_to_svgbox();">DONE!</a>
+            </div>
+        </div>
+    
+        <div id="metadata_bg">
+        </div>
+    
+        <div id="metadata">
+            <div id="infostatic">
+                    Providing some simple information about yourself and your map will 
+                    help others understand the map's context and gain a greater understanding 
+                    of the community. We will never sell or distribute this information
+                    to third-parties.<br />
+                    <i>(Fields marked with <font style="color: red;">*</font> are required)</i>
+            </div>
+            
+            <form action="http://127.0.0.1/cgi-bin/tmr.py" method="post" id="metadata_submit" name="form">
+                <textarea id="svg" name="svg_data"></textarea>
+                <p>What's your name?<br /><input type="text" width="60" name="authorname" /><br />
+                <p>Do you have a website?<br /><input type="text" width="60" name="authorsite" /><br />
+                <p>Email address?<br /><input type="text" width="60" name="authoremail" /><br />
+                <p>Which best describes you?<font style="color: red;">*</font><br />
+                <select name="authortype">
+                    <option>Worker</option>
+                    <option>Resident</option>
+                    <option>Visitor</option>
+                </select>
+                <br />
+                <p>Care to give us a description of your map?<br /><textarea name="description" rows="5" cols="40" wrap="wrap"></textarea><br />        
+                <center><input type="submit" value="SUBMIT MAP" id="submitmap" /></center>
+                    
+            </form>
+        </div>
+    
+    
+    
+    </body>
+    
+</html>
