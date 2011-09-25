@@ -1,10 +1,10 @@
 #!c:/python26/python.exe -u
 # backend for tendermaps
-# not finished: adding data to a DB, os is depricated (use subprocess)
+# not finished: adding data to a DB
 # mike tahani     m.tahani@gmail.com
 import cgi
 import cgitb; cgitb.enable()    # debugging
-import collections, json, hashlib, os
+import collections, json, hashlib, subprocess
 
 print "Content-type: text/html\n\n"
 
@@ -42,7 +42,7 @@ def svg_to_files(drawn_objects):
    for category in categories:
      file_prefix = "%s_%s." % ( unique_id, category )
      svg_file_locations.append(write_svg_to_file( file_prefix, drawn_objects[category] ) )
-   rasterize_svg ( file_prefix, svg_file_locations )
+   rasterize_svg ( svg_file_locations )
    return svg_file_locations
 
 def write_svg_to_file(file_prefix, svg):
@@ -77,13 +77,18 @@ def write_svg_to_file(file_prefix, svg):
 def format_svg_tags(svg_dict):
    """ gets a dict of svg data, returns a string of svg-markup-formatted data """
    return ' '.join( [ "%s=\"%s\"" % (tag, svg_dict[tag]) for tag in svg_dict ] )
-
-def rasterize_svg(file_prefix, svg_file_locations):
+ 
+def rasterize_svg(svg_file_locations):
    """ convert svg to png using batik; do them all in one go cuz it's faster """
-   os.system("java -jar %s %s -d %s"
-                  % ( BATIK_JARFILE, ' '.join(svg_file_locations), PNG_DIR) )
-   return
-   
+   command_string = "java -jar %s %s -d %s" % ( BATIK_JARFILE,
+                                               ' '.join(svg_file_locations),
+                                               PNG_DIR)
+   output = subprocess.call(
+       command_string,
+       shell=True,
+       stderr=subprocess.STDOUT,
+       )
+   return output
 
 def main():
    formvals = get_form_values()
@@ -92,8 +97,8 @@ def main():
    sorted_svg = sort_svg_by_color( formvals['svg_data'] )
    print "<b>sort_svg_by_color():</b>", sorted_svg
    print "<hr />"
-   svg_to_files(sorted_svg)
-   print "saved to files"
+   svg_output = svg_to_files(sorted_svg)
+   print "<b>svg_to_files()</b>:", svg_output
    print "<hr />"
    print "finished"
    
