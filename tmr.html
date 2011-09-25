@@ -87,7 +87,7 @@
             #mapdone,
             #submitmap {
                 font-family: arial;
-                font-size: 38px;
+                font-size: 32px;
 
             }
             
@@ -96,15 +96,16 @@
                 width: 100%;
                 font-weight: bold;
                 text-decoration: none;
-                margin: 0;
-                padding: 0;
+                //margin-bottom: 10px;
+                padding: 3px;
                 background: inherit;
                 -moz-border-radius: 5px;
                 border-radius: 5px;
             }
             
             a#mapdone:hover {
-                background: #fff;
+                background: #00A0B0;
+                color: #0A0A0A;
             }
             
             #submitmap {
@@ -128,7 +129,7 @@
     </head>
     <body>
     
-        <div id="mapbox" onmousedown="if (brush_type == 'circle'){ drawDot(event.pageX,event.pageY); } else { draw_on = 'True'; setPoint(event); }" onmousemove="if (draw_on == 'True') { drawPath( event ); } " onmouseup="up();">
+        <div id="mapbox" onmousedown="if (brush_type == 'circle'){ drawDot(event.pageX,event.pageY); } else { draw_on = true; setPoint(event); }" onmousemove="if (draw_on) { drawPath( event ); } " onmouseup="up();">
         </div>
         
         <script type="text/javascript">
@@ -169,7 +170,12 @@
             <div class="options">
                 <a id="mapdone" href="javascript: add_json_to_svgbox();">DONE!</a>
             </div>
+            
         </div>
+    
+        <form name="dbg" action="" style="position:fixed; top: 5%; left: 40%;">
+            <textarea name="debugbox"></textarea>
+        </form>
     
         <div id="metadata_bg">
         </div>

@@ -4,6 +4,13 @@
 
 $(document).ready(function() {
     
+    $('.options > a').click(function() {
+        if (!$(this).hasClass('canvasopts')) {
+            $(this).siblings().removeClass('selected');    
+            $(this).addClass('selected');
+        }
+    });
+    
     $('#mapdone').click(function() {
       $('#metadata').show();
       $('#metadata_bg').show();
