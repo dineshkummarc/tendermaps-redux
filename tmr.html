@@ -1,9 +1,9 @@
 <html>
     <head>
-        <script type="text/javascript" src="js/raphael-min.js"></script>
-        <script type="text/javascript" src="js/jquery-1.6.4.min.js"></script>
-        <script type="text/javascript" src="js/draw.js"></script>
-        <script type="text/javascript" src="js/page.js"></script>
+        <script type="text/javascript" src="raphael-min.js"></script>
+        <script type="text/javascript" src="jquery-1.6.4.min.js"></script>
+        <script type="text/javascript" src="draw.js"></script>
+        <script type="text/javascript" src="page.js"></script>
         <meta name="description" content="tendermaps redux" />
         <meta name="contact" content="m.tahani@gmail.com" />
         <meta name="author" content="mike tahani" />
@@ -65,6 +65,7 @@
                 color: #fff;
                 font-family: courier new;
                 font-size: 12px;
+                opacity: 0.9;
                 //border-top-left-radius: 10px 5px;
                 border-bottom-right-radius: 5px;
                 border-top-right-radius: 5px;
@@ -114,6 +115,10 @@
                 -moz-border-radius: 15px;
                 border-radius: 15px;
             }
+            
+            .selected {
+                background: #555;
+            }
         
         </style>
         
@@ -133,20 +138,20 @@
         <div id="toolbar">
             <div class="options">
                 <b>brush color:</b><br />
-                <a class="brushcolor green" href="javascript: var brush_color = '#00ff00';">green</a><br /> 
-                <a class="brushcolor red" href="javascript: var brush_color = '#ff0000';">red</a><br /> 
-                <a class="brushcolor blue" href="javascript: var brush_color = '#0000ff';">blue</a>
+                <a class="brushcolor" href="javascript: var brush_color = '#00ff00';">green</a><br /> 
+                <a class="brushcolor selected" href="javascript: var brush_color = '#ff0000';">red</a><br /> 
+                <a class="brushcolor" href="javascript: var brush_color = '#0000ff';">blue</a>
             </div>
                 
             <div class="options">
                 <b>brush type:</b><br />
-                <a class="brushtype path" href="javascript: var brush_type = 'path';">freehand</a><br /> 
-                <a class="brushtype circle" href="javascript: var brush_type = 'circle';">point of interest</a>
+                <a class="brushtype selected" href="javascript: var brush_type = 'path';">freehand</a><br /> 
+                <a class="brushtype" href="javascript: var brush_type = 'circle';">point of interest</a>
             </div>
                 
             <div class="options">
                 <b>brush size:</b> <br />
-                <a class="brushsize" href="javascript: var brush_size = 10;">10 px</a><br /> 
+                <a class="brushsize selected" href="javascript: var brush_size = 10;">10 px</a><br /> 
                 <a class="brushsize" href="javascript: var brush_size = 5;">5 px</a><br /> 
                 <a class="brushsize" href="javascript: var brush_size = 3;">3 px</a><br /> 
                 <a class="brushsize" href="javascript: var brush_size = 1;">1 px</a> 
@@ -154,9 +159,9 @@
                 
             <div class="options">
                 <b>canvas options:</b><br />
-                <a class="undo" href="javascript: undo();">undo</a><br />
-                <a class="redo" href="javascript: redo();">redo</a><br />
-                <a class="clear" href="javascript: clearall();">clear canvas</a>
+                <a class="undo canvasopts" href="javascript: undo();">undo</a><br />
+                <a class="redo canvasopts" href="javascript: redo();">redo</a><br />
+                <a class="clear canvasopts" href="javascript: clearall();">clear canvas</a>
             </div>
             
             <br />
