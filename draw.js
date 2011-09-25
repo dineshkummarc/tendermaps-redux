@@ -32,6 +32,7 @@ function drawDot(dx,dy) {
 
 function drawPath ( event ) {
     // draw the path
+    
     if (window.dragged) {
 	ex = event.pageX - offset;
 	ey = event.pageY - offset;
@@ -41,13 +42,14 @@ function drawPath ( event ) {
 			    'stroke'       : brush_color,
 			    'stroke-width' : brush_size });
     }
+    
 }
 
 function up() {
     // create a json object and add it to the list of objects
     window.dragged = false;
     if (brush_type == 'path') {	
-	draw_on = false;
+	window.draw_on = false;
 	var drawn_obj = 
 		    {
 			"d" 		: pathstring,
@@ -59,6 +61,9 @@ function up() {
 	if (pathstring.indexOf('L') > -1) {
 	    // if user clicked but didn't drag, don't add an empty path string to the on-screen elements
 	    window.on_screen_elements.push(drawn_obj);
+	    redraw_canvas();	// fixes a weird bug that caused svg to be drawn on-screen,
+				// but not saved to svg_data
+	    //document.dbg.debugbox.value = '';
 	    //document.dbg.debugbox.value = document.dbg.debugbox.value + (JSON.stringify(drawn_obj)+'\n');
 	}
     
