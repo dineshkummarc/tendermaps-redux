@@ -1,4 +1,7 @@
 #!c:/python26/python.exe -u
+# backend for tendermaps
+# not finished: adding data to a DB, os is depricated (use subprocess)
+# mike tahani     m.tahani@gmail.com
 import cgi
 import cgitb; cgitb.enable()    # debugging
 import collections, json, hashlib, os
