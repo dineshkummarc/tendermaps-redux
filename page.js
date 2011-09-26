@@ -12,26 +12,26 @@ $(document).ready(function() {
     });
     
     $('#mapdone').click(function() {
-      $('#metadata').show();
-      $('#metadata_bg').show();
-      //return false;
+      $('#metadata, #metadata_bg').show();
     });
     
     $('#metadata_bg').click(function() {
-      $('#metadata').hide();
-      $('#metadata_bg').hide();
+      $('#metadata, #metadata_bg').hide();
     });
     
-    $('#brush_color > .brushcolor').click(function() {
-        window.brush_color = '#' + $(this).id;
+    $('#brush_color > a').click(function() {
+        window.brush_color = '#' + $(this).attr('id');
+        return false;
     });
     
-    $('#brush_type > .brushtype').click(function() {
-        window.brush_type = $(this).id;
+    $('#brush_type > a').click(function() {
+        window.brush_type = $(this).attr('id');
+        return false;
     });
     
-    $('#brush_size > .brushsize').click(function() {
-        window.brush_size = parseInt( $(this).id );
+    $('#brush_size > a').click(function() {
+        window.brush_size = parseInt( $(this).attr('id') );
+        return false;
     });
 
 });
