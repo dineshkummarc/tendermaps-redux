@@ -137,28 +137,28 @@
         </script>
     
         <div id="toolbar">
-            <div class="options">
+            <div class="options" id='brush_color'>
                 <b>brush color:</b><br />
-                <a class="brushcolor" href="javascript: var brush_color = '#00ff00';">green</a><br /> 
-                <a class="brushcolor selected" href="javascript: var brush_color = '#ff0000';">red</a><br /> 
-                <a class="brushcolor" href="javascript: var brush_color = '#0000ff';">blue</a>
+                <a class="brushcolor" id='00ff00' href="">green</a><br /> 
+                <a class="brushcolor selected" id='ff0000' href="">red</a><br /> 
+                <a class="brushcolor" id='0000ff' href="">blue</a>
             </div>
                 
-            <div class="options">
+            <div class="options" id='brush_type'>
                 <b>brush type:</b><br />
-                <a class="brushtype selected" href="javascript: var brush_type = 'path';">freehand</a><br /> 
-                <a class="brushtype" href="javascript: var brush_type = 'circle';">point of interest</a>
+                <a class="brushtype selected" id='path' href="">freehand</a><br /> 
+                <a class="brushtype" id='circle' href="">point of interest</a>
             </div>
                 
-            <div class="options">
+            <div class="options" id='brush_size'>
                 <b>brush size:</b> <br />
-                <a class="brushsize selected" href="javascript: var brush_size = 10;">10 px</a><br /> 
-                <a class="brushsize" href="javascript: var brush_size = 5;">5 px</a><br /> 
-                <a class="brushsize" href="javascript: var brush_size = 3;">3 px</a><br /> 
-                <a class="brushsize" href="javascript: var brush_size = 1;">1 px</a> 
+                <a class="brushsize selected" id='10' href="">10 px</a><br /> 
+                <a class="brushsize" id='5' href="">5 px</a><br /> 
+                <a class="brushsize" id='3' href="">3 px</a><br /> 
+                <a class="brushsize" id='1' href="">1 px</a> 
             </div>
                 
-            <div class="options">
+            <div class="options" id='canvas_opts'>
                 <b>canvas options:</b><br />
                 <a class="undo canvasopts" href="javascript: undo();">undo</a><br />
                 <a class="redo canvasopts" href="javascript: redo();">redo</a><br />

@@ -5,13 +5,13 @@
 window.brush_type = 'path';
 window.brush_color = '#ff0000';
 window.brush_size = 10;
-window.rmod = 3;
+window.rmod = 3; // brush size for path * modifier = circle radius
 window.canvasWidth  = 2361;
 window.canvasHeight = 1633;
 window.pathstring = '';  // the svg string for a path
 window.draw_on = false;	 // has the user clicked down to draw a path?
 window.dragged = false;  // has the user dragged the mouse?
-window.offset = 10;
+window.offset = 10;	// don't center on the mouse cursor
 window.on_screen_elements = [];
 
 

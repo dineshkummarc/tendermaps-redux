@@ -21,5 +21,17 @@ $(document).ready(function() {
       $('#metadata').hide();
       $('#metadata_bg').hide();
     });
+    
+    $('#brush_color > .brushcolor').click(function() {
+        window.brush_color = '#' + $(this).id;
+    });
+    
+    $('#brush_type > .brushtype').click(function() {
+        window.brush_type = $(this).id;
+    });
+    
+    $('#brush_size > .brushsize').click(function() {
+        window.brush_size = parseInt( $(this).id );
+    });
 
 });

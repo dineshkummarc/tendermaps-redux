@@ -92,12 +92,13 @@ def rasterize_svg(svg_file_locations):
 
 def main():
    formvals = get_form_values()
+   sorted_svg = sort_svg_by_color( formvals['svg_data'] )
+   svg_output = svg_to_files(sorted_svg)
+
    print "<b>get_form_values():</b>", formvals
    print "<hr />"
-   sorted_svg = sort_svg_by_color( formvals['svg_data'] )
    print "<b>sort_svg_by_color():</b>", sorted_svg
    print "<hr />"
-   svg_output = svg_to_files(sorted_svg)
    print "<b>svg_to_files()</b>:", svg_output
    print "<hr />"
    print "finished"
