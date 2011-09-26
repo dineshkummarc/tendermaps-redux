@@ -1,9 +1,0 @@
-TENDERMAPS REDUX
-
-description: a sketchpad app for tendermaps.com
-
-this was hacked together in the span of a couple hours. it's still in prototype-phase.
-
-the backend does nothing so far. rasterizing functions will be added later, and will plug in to zain's thinger (https://github.com/zain/tendermaps/blob/master/tendermaps.py).
-
-not currently deployed anywhere (i don't have access to a public webserver), but there are examples of what it looks like in the "examples" folder.
