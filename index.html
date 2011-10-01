@@ -14,13 +14,41 @@
                 display: none;
             }
         
+            #infodyn,
             #infostatic {
-                -moz-border-radius: 5px;
-                border-radius: 5px;
-                padding: 5px;
-                background: #EB6841;
+                //-moz-border-radius: 5px;
+                //border-radius: 5px;
+                padding-bottom: 5px;
+                background: #fff;
                 color: #000;
             }
+            
+            #infodyn {
+                font-weight: bold;
+                font-size: 14px;
+                text-transform: uppercase;
+                border-bottom: 1px solid #000;
+                margin-bottom: 10px;
+            }
+            
+            #infostatic {
+               border-bottom: 3px solid #000;
+            }
+            
+            span {
+                background: #000;
+                color: #fff;
+            }
+            
+            .txt {
+                background: #fff;
+                color: #1A1A1A;
+                border: 0;
+                border-bottom: 1px dotted #000;
+                width: 90%;
+                font-family: georgia, times new roman;
+            }
+            
         
             #mapbox {
                 background-image: url('largemap.jpg');
@@ -35,13 +63,13 @@
                 position: fixed;
                 top: 20%;
                 left: 25%;
-                background: #1A1A1A;
+                background: #fff;
                 font-family: arial;
                 font-size: 12px;
-                color: #fff;
+                color: #000;
                 padding: 10px;
-                -moz-border-radius: 15px;
-                border-radius: 15px;
+                -moz-border-radius: 5px;
+                border-radius: 5px;
             }
             
             #metadata_bg {
@@ -60,13 +88,11 @@
                 position: fixed;
                 top: 10%;
                 left: 0;
-                //padding: 10px;
                 background: #0A0A0A;
                 color: #fff;
                 font-family: courier new;
                 font-size: 12px;
                 opacity: 0.9;
-                //border-top-left-radius: 10px 5px;
                 border-bottom-right-radius: 5px;
                 border-top-right-radius: 5px;
                 -moz-border-bottom-right-radius: 5px;
@@ -109,12 +135,12 @@
             }
             
             #submitmap {
-                border: 2px solid #fff;
-                background: #CC333F;
-                color: inherit;
-                width: 90%;
-                -moz-border-radius: 15px;
-                border-radius: 15px;
+                margin-top: 20px;
+                border: 1px solid #fff;                
+                background: #000;
+                color: #fff;
+                float: left;
+                padding:0;
             }
             
             .selected {
@@ -189,22 +215,24 @@
                     <i>(Fields marked with <font style="color: red;">*</font> are required)</i>
             </div>
             
-            <form action="http://127.0.0.1/cgi-bin/tmr.py" method="post" id="metadata_submit" name="form">
-                <textarea id="svg" name="svg_data"></textarea>
-                <p>What's your name?<br /><input type="text" width="60" name="authorname" /><br />
-                <p>Do you have a website?<br /><input type="text" width="60" name="authorsite" /><br />
-                <p>Email address?<br /><input type="text" width="60" name="authoremail" /><br />
-                <p>Which best describes you?<font style="color: red;">*</font><br />
-                <select name="authortype">
-                    <option>Worker</option>
-                    <option>Resident</option>
-                    <option>Visitor</option>
-                </select>
-                <br />
-                <p>Care to give us a description of your map?<br /><textarea name="description" rows="5" cols="40" wrap="wrap"></textarea><br />        
-                <center><input type="submit" value="SUBMIT MAP" id="submitmap" /></center>
-                    
-            </form>
+            <div id="infodyn">
+                <form action="http://127.0.0.1/cgi-bin/tmr.py" method="post" id="metadata_submit" name="form">
+                    <textarea id="svg" name="svg_data"></textarea>
+                    <p><span>What's your name?</span><br /><input class="txt" type="text" width="60" name="authorname" /></p>
+                    <p><span>Do you have a website?</span><br /><input class="txt" type="text" width="60" name="authorsite" /></p>
+                    <p><span>Email address?</span><br /><input class="txt" type="text" width="60" name="authoremail" /></p>
+                    <p><span>Which best describes you?</span><font style="color: red;">*</font></p>
+                    <select name="authortype">
+                        <option>Worker</option>
+                        <option>Resident</option>
+                        <option>Visitor</option>
+                    </select>
+                    <br />
+                    <p><span>description of your map</span><br /><textarea name="description" rows="5" cols="40" wrap="wrap"></textarea></p>        
+                    <input type="submit" value="SUBMIT MAP" id="submitmap" />
+                        
+                </form>
+            </div> 
         </div>
     
     
