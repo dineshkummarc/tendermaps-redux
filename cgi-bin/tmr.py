@@ -20,8 +20,12 @@ def get_form_values():
    return dict( zip( keys, [ form.getvalue(val) for val in keys ] ) )
 
 def sort_svg_by_color(svg_data):
-   """ sort the svg objects into different categories based on color/'heart' """
-   colors = { '#ff0000': 'red', '#00ff00': 'green', '#0000ff': 'blue' }
+   """
+   sort the svg objects into different categories based on color/'heart'.
+   should do rgb/category conversion from the frontend, or just leave hex as
+   the filename suffix to avoid redundancy
+   """
+   colors = { '#981616': 'red', '#89c90e': 'green', '#26464b': 'blue' }
    drawn_objects = collections.defaultdict(list)
    
    for obj in json.loads( svg_data ):

@@ -3,7 +3,7 @@
 */
 
 window.brush_type = 'path';
-window.brush_color = '#ff0000';
+window.brush_color = '#981616'; // fix: this appears in three places
 window.brush_size = 10;
 window.rmod = 3; // brush size for path * modifier = circle radius
 window.canvasWidth  = 2361;
