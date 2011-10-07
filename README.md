@@ -15,3 +15,7 @@ Starts as a raphael.js layer on top of an image of the Tenderloin in SF.
 There's way too much post-processing. I want to have the frontend append the non-dynamic SVG variables
 ("stroke-opacity", "stroke-linecap", etc) one time, and not have that reiterated on the backend. Also,
 there's no "pretty" transition after submitting the map.
+
+## Author Info
+
+Mike Tahani, m.tahani at gmail
