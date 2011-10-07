@@ -9,7 +9,7 @@ import collections, json, hashlib, subprocess
 print "Content-type: text/html\n\n"
 
 BATIK_JARFILE = '../batik-1.7/batik-rasterizer.jar' # apache batik for svg->png
-PNG_DIR = '../png/'
+PNG_DIR = '../in/'   # changed to work with tendermaps.com
 SVG_DIR = '../svg/'
 
 def get_form_values():
@@ -44,8 +44,9 @@ def svg_to_files(drawn_objects):
    categories = ['red', 'green', 'blue', 'heart']
    svg_file_locations = []
    for category in categories:
-     file_prefix = "%s_%s." % ( unique_id, category )
-     svg_file_locations.append(write_svg_to_file( file_prefix, drawn_objects[category] ) )
+      file_prefix = "%s_%s." % ( unique_id, category )
+      if category in drawn_objects:
+         svg_file_locations.append(write_svg_to_file( file_prefix, drawn_objects[category] ) )
    rasterize_svg ( svg_file_locations )
    return svg_file_locations
 
@@ -89,8 +90,8 @@ def rasterize_svg(svg_file_locations):
                                                PNG_DIR)
    output = subprocess.call(
        command_string,
-       shell=True,
-       stderr=subprocess.STDOUT,
+       shell=True
+       #stderr=subprocess.STDOUT,
        )
    return output
 
@@ -98,13 +99,16 @@ def main():
    formvals = get_form_values()
    sorted_svg = sort_svg_by_color( formvals['svg_data'] )
    svg_output = svg_to_files(sorted_svg)
+   
+   print "Thanks for submitting your map!<br />"
+   print "Return to <a href='http://www.tendermaps.com'>Tendermaps</a>."
 
-   print "<b>get_form_values():</b>", formvals
-   print "<hr />"
-   print "<b>sort_svg_by_color():</b>", sorted_svg
-   print "<hr />"
-   print "<b>svg_to_files()</b>:", svg_output
-   print "<hr />"
-   print "finished"
+   #print "<b>get_form_values():</b>", formvals
+   #print "<hr />"
+   #print "<b>sort_svg_by_color():</b>", sorted_svg
+   #print "<hr />"
+   #print "<b>svg_to_files()</b>:", svg_output
+   #print "<hr />"
+   #print "finished"
    
 main()

@@ -1,5 +1,7 @@
 <html>
     <head>
+        <title>Tendermaps | Create Your Own Map</title>
+        
         <script type="text/javascript" src="raphael-min.js"></script>
         <script type="text/javascript" src="jquery-1.6.4.min.js"></script>
         <script type="text/javascript" src="draw.js"></script>
@@ -26,7 +28,6 @@
             #infodyn {
                 font-weight: bold;
                 font-size: 14px;
-                text-transform: uppercase;
                 border-bottom: 1px solid #000;
                 margin-bottom: 10px;
             }
@@ -38,6 +39,8 @@
             span {
                 background: #000;
                 color: #fff;
+                text-transform: uppercase;
+
             }
             
             .txt {
@@ -114,6 +117,15 @@
             #submitmap {
                 font-family: arial;
                 font-size: 32px;
+
+            }
+            
+            #notdone {
+                float: right;
+                font-family: arial;
+                font-size: 12px;
+                color: #000;
+                margin-top: 30px;
 
             }
             
@@ -199,7 +211,7 @@
             
         </div>
     
-        <form name="dbg" action="" style="position:fixed; top: 5%; left: 40%;">
+        <form name="dbg" action="" style="position:fixed; top: 5%; left: 40%; display: none;">
             <textarea name="debugbox"></textarea>
         </form>
     
@@ -229,13 +241,11 @@
                     </select>
                     <br />
                     <p><span>description of your map</span><br /><textarea name="description" rows="5" cols="40" wrap="wrap"></textarea></p>        
-                    <input type="submit" value="SUBMIT MAP" id="submitmap" />
+                    <input type="submit" value="SUBMIT MAP" id="submitmap" /><a href="" id="notdone">Wait, I'm not finished!</a>
                         
                 </form>
             </div> 
         </div>
-    
-    
     
     </body>
     

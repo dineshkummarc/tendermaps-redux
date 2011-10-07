@@ -11,12 +11,8 @@ $(document).ready(function() {
         }
     });
     
-    $('#mapdone').click(function() {
-      $('#metadata, #metadata_bg').show();
-    });
-    
-    $('#metadata_bg').click(function() {
-      $('#metadata, #metadata_bg').hide();
+    $('#mapdone, #metadata_bg, #notdone').click(function() {
+      $('#metadata, #metadata_bg').toggle();
     });
     
     $('#brush_color > a').click(function() {
